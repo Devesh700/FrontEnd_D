@@ -1,15 +1,21 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Button, Container, NavDropdown, Navbar, Nav } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import SubjectData from '../../SubjectData';
+import { useState } from 'react';
 
 function NavScrollExample() {
+  const navigate = useNavigate();
+  const [showdropdown, setdropdown] = useState(false);
+  const handlemouseenter = (e) => {
+    setdropdown(() => true);
+  }
+  const handlemouseleave = (e) => {
+    setdropdown(() => false);
+  }
   return (
     <Navbar expand="lg" className="bg-body-tertiary p-3" sticky="top">
-      <Container fluid>
-        <Navbar.Brand href="#">EduLite</Navbar.Brand>
+      <Container fluid className=' justify-content-around'>
+        <Link to={"/"} className=' text-decoration-none'><Navbar.Brand className='fs-3'>EduLite</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -17,8 +23,32 @@ function NavScrollExample() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <NavDropdown title="Online Classes" id="navbarScrollingDropdown">
+            <Link to={"/"} className=' text-decoration-none mx-2 fs-5'><Nav.Link href="#action1">Home</Nav.Link></Link>
+            <NavDropdown title="Online Classes"
+              id="navbarScrollingDropdown"
+              className='mx-2 fs-5'
+              show={showdropdown}
+              onMouseEnter={handlemouseenter} onMouseLeave={handlemouseleave}>
+              {SubjectData.map((elem, index) => {
+                let cls = "class " + elem.class
+                return (
+                  <>
+                    <NavDropdown title={cls} className='dropend fs-5' key={index}>
+                      {elem.subjects.map((val, index) => {  // Fix here: Change elem.subject to elem.subjects
+                        return (
+                          <>
+                            <NavDropdown.Item key={index}>{val}</NavDropdown.Item>
+                          </>
+                        );
+                      })}
+                    </NavDropdown>
+                    <NavDropdown.Divider />
+                  </>
+                );
+              })}
+            </NavDropdown>
+
+            <NavDropdown title="Tution" id="navbarScrollingDropdown" className='mx-2 fs-5'>
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Another action
@@ -28,36 +58,20 @@ function NavScrollExample() {
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Tution" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="IT Courses" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
+            <NavDropdown title="IT Courses" id="navbarScrollingDropdown" className='mx-2 fs-5'>
+              <Link to={"/Courses"} className=' text-decoration-none'><NavDropdown.Item href="#action3">Course List</NavDropdown.Item></Link>
+              <NavDropdown.Item href="#action3">Course Detail</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">Course Category</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Lessons</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <div className="d-flex">
+            <Link to="/login"><Button variant="outline-success">Log in</Button></Link>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

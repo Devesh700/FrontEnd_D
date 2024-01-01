@@ -1,0 +1,14 @@
+.h-150{
+  height: 150px;
+}
+.min-vh-50{
+  min-height: 70vh;
+}
+.min-h-100dvh{
+  min-height: 100dvh;
+}
+@media screen and (min-width:768px) and (max-width:1048px) {
+    .min-w-70{
+        min-width: 70% !important;
+    }
+}

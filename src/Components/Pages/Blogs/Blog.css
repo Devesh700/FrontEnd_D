@@ -1,0 +1,8 @@
+.blogs-card{
+    width: 400px;
+}
+@media screen and (max-width:400px) {
+    .blogs-card{
+        width: 100%;
+    }
+}
