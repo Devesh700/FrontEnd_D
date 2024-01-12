@@ -34,7 +34,7 @@ const CourseList = () => {
               {category.map((elem,index)=>{
                 return (
                   <>
-                    <option value={elem}>{elem}</option> 
+                    <option value={elem} key={index}>{elem}</option> 
                   </>
                 )
               })}

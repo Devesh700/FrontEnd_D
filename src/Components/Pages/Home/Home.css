@@ -7,8 +7,33 @@ html,body{
     width: 100%;
     height: 100%;
 }
-
-
+.bg-overlay {
+background:rgb(105 33 33 / 25%);
+}
+.bg-hero{
+    background-image: url("../../../../public/Images/student-class-looking-course.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-community {
+    background: #050253;
+    color: #ffffffff;
+}
+.ceo-image{
+    width: 350px;
+    height: 350px;
+}
+@media screen and (max-width:768px) {
+    .ceo-image{
+    width: 200px;
+    height: 200px;
+    }
+    .founder{
+        left: 150px !important;
+        top: 150px !important;
+    }
+}
 .form-container{
     width: 320px!important;
     transform: translateY(-30%);
@@ -16,9 +41,34 @@ html,body{
     justify-content: center;
     height: fit-content;
 }
+.founder{
+    width: max-content;
+    top: 290px;
+    left: 320px;
+}
+.founder >p{
+    padding: 0px;
+    margin: 0px;
+    color: blueviolet;
+    font-weight: bold;
+    animation: animatefounder 2s linear 0s infinite forwards;
+    animation-fill-mode: both;
+}
+@keyframes animatefounder {
+    0%{
+        font-weight: bold;
+        color: blueviolet;
+    }    
+    100%{
+        font-weight: bolder;
+        color: brown;
+    }
+}
+
 .home{
     background: rgba(21, 20, 20, 0.6);
 }
+
 .w-30{
     width: 30% !important;
 }

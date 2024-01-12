@@ -1,35 +1,33 @@
 import React from 'react'
 // import { Link } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import "./Partials.css"
 
 const Footer = () => {
   return (
     <>
-      <footer className='w-100 bg-dark d-flex flex-wrap justify-content-center gap-3 text-capitalize'>
-        <div className='col-sm-3'>
-            <p className='text-white my-4 fw-semibold'> explore us</p>
-            <p><Link>Teachshala</Link></p>
-            <p><Link>online courses</Link></p>
-            <p><Link>tution</Link></p>
-            <p><Link>IT courses</Link></p>
-            <p><Link>Become a mentor</Link></p>
-        </div>
-        <div className='col-sm-3'>
-            <p className='text-white my-4 fw-semibold'> Pages</p>
-            <p><Link>Home</Link></p>
-            <p><Link>Blogs</Link></p>
-            <p><Link>Contact us</Link></p>
-            <p><Link>Next scheduled</Link></p>
-            <p><Link>your profie</Link></p>
-        </div>
-        <div className='col-sm-3'>
+      <footer className='w-100 bg-footer d-flex flex-wrap justify-content-around gap-3 text-capitalize py-4'>
+        <ul className='col-sm-3'>
+            <p className='text-white my-4 fw-semibold'> useful links</p>
+            <li className=' lh-lg'><Link>About</Link></li>
+            <li className=' lh-lg'><Link>Join our Community</Link></li>
+            <li className=' lh-lg'><Link>lirograms & Degrees</Link></li>
+            <li className=' lh-lg'><Link>F.A.Q</Link></li>
+        </ul>
+        <ul className='col-sm-3'>
+            <p className='text-white my-4 fw-semibold'> pages</p>
+            <li className=' lh-lg'><Link>Home</Link></li>
+            <li className=' lh-lg'><Link>Success story</Link></li>
+            <li className=' lh-lg'><Link>Courses</Link></li>
+            <li className=' lh-lg'><Link>sign in now</Link></li>
+        </ul>
+        <ul className='col-sm-3'>
             <p className='text-white my-4 fw-semibold'> follow us on</p>
-            <p><Link>you tube</Link></p>
-            <p><Link>linkedln</Link></p>
-            <p><Link>instagram</Link></p>
-            <p><Link>twitter</Link></p>
-            <p><Link>facebook</Link></p>
-        </div>
+            <li className=' lh-lg'><Link>you tube</Link></li>
+            <li className=' lh-lg'><Link>linkedln</Link></li>
+            <li className=' lh-lg'><Link>instagram</Link></li>
+            <li className=' lh-lg'><Link>twitter</Link></li>
+        </ul>
       </footer>
     </>
   )

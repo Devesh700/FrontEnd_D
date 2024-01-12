@@ -1,83 +1,41 @@
 import React from 'react'
 import "./Home.css";
-import { Button } from 'react-bootstrap'
 import Contact from '../../Contact';
-import Blog from '../Blogs/Blog';
-import { Link } from 'react-router-dom';
+import Blog from './Blog';
 import CourseData from '../Courses/CourseData';
+import Hero from './Hero';
+import Categories from './Categories';
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+  const navigate=useNavigate();
+  const category=[...new Set(CourseData.map((elem) => elem.category))];
   return (
     <>
-      <div className='container-fluid p-0 home bg-primary text-white'>
-        {/* <img src='Images/Home_bg.jpg' className='home-bg-image p-0' alt='Home_bg'/> */}
-        <div className='container-fluid p-5 px-5 m-auto w-70'>
-            <h1 className=' mt-5 text-capitalize fw-bold fs-1'>Transforming education <br/>through E-learning</h1>
-            <p className='col-md-6'>Experience personalized, interactive learning from the comfort of your home. Enhance knowledge, build skills, and achieve remarkable academic progress with us. </p>
-            <Link to="/register"><Button variant='danger' className='p-3 fw-bold btn-community rounded-1'> Join Our Learning Community</Button></Link>{''}
+      <Hero/>
+      <div className='w-100 d-flex flex-wrap p-3 px-lg-5'>
+        <div className='col-md-6 p-5'>
+          <p className='fs-4'>Better Learning. better Results</p>
+          <h2 className='text-capitalize fs-3'>Online education platform that fits for everyone</h2>
+          <p className=' fw-light text-capitalize fs-5'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis magnam in voluptatem quia atque debitis? Alias hic magnam dolore, quis ipsa voluptate id suscipit ipsam?</p>
+          <button className='btn btn-community py-3 px-5 fw-bold text-capitalize btn-success'>explore more about us</button>
+        </div>
+        <div className='col-md-6 px-3 d-flex position-relative align-items-center'>
+          <img src='https://tse2.mm.bing.net/th?id=OIP._gsgafzrhrnMQbJYZI-flQHaE8&pid=Api&P=0&h=180' className='rounded-circle ceo-image' alt=''/>
+          <div className=' position-absolute founder '>
+            <p>Founder & CEO</p>
+          <p>Manish mani</p>
+          </div>
         </div>
       </div>
-
-
-      <div className=' px-4 d-flex flex-wrap'>
-            <div className='d-flex flex-wrap justify-content-start p-3 w-70'>
-                <Link to={"/scheduled"} className='col-md-3 about-card card border border-0 mt-3 m-3 text-decoration-none'>
-                    <img className="card-img-top" src="Images/Home_bg.jpg" alt="Card"/>
-                    <div className="card-body">
-                      <h4 className="card-title">Next Scheduled</h4>
-                      <p className="card-text">Tosser what plonker mufty squiffy the wireless the monty.</p>
-                      
-                     </div>
-                    
-                    </Link>
-                <Link to={"/scheduled"} className='col-md-3 about-card card border border-0 mt-3 m-3 text-decoration-none'>
-                    <img className="card-img-top" src="Images/Home_bg.jpg" alt="Card"/>
-                    <div className="card-body">
-                      <h4 className="card-title">our Instructors</h4>
-                      <p className="card-text">Tosser what plonker mufty squiffy the wireless the monty.</p>
-                      
-                     </div>
-                    
-                    </Link>
-                  <Link to={"/scheduled"} className='col-md-3 about-card card border border-0 mt-3 m-3 text-decoration-none'>
-                     <img className="card-img-top" src="Images/Home_bg.jpg" alt="Card"/>
-                     <div className="card-body">
-                       <h4 className="card-title">Benefits</h4>
-                       <p className="card-text">Tosser what plonker mufty squiffy the wireless the monty.</p>
-                      
-                    </div>
-                    
-                    </Link>
-                  <Link to={"/scheduled"} className='col-md-3 about-card card border border-0 mt-3 m-3 text-decoration-none'>
-                     <img className="card-img-top" src="Images/Home_bg.jpg" alt="Card"/>
-                     <div className="card-body">
-                       <h4 className="card-title">Programs we offer</h4>
-                       <p className="card-text">Tosser what plonker mufty squiffy the wireless the monty.</p>
-                      
-                     </div>
-                    
-                    </Link>
-            </div>
-            <form className=' card form-container w-30'>
-                    <fieldset className='p-3'>
-                        <p className='display-5'>Registration for Course Enroll</p>
-                        <input placeholder='Name' type='text' className='form-control mt-2'/>
-                        <input placeholder='Email' type='text' className='form-control mt-2'/>
-                        <input placeholder='Phone' type='text' className='form-control mt-2'/>
-                        <select name="course" id="course" className='form-control mt-2 mb-2' >
-                          {CourseData.map((elem,index)=>{
-                            return (
-                              <>
-                              <option value={elem.name} key={index}>{elem.name}</option> 
-                              </>
-                            )
-                          })}
-                        </select>
-                        <Button variant='primary' className=' mt-2 px-5' style={{width:"100%"}}>Apply</Button>
-                    </fieldset>
-                </form>
-        </div>
       <Contact/>
       <Blog/>
+      <div className='py-3'>
+        <Categories category={category.slice(0,4)}/>
+      <button 
+      className='btn btn-community d-grid mx-auto px-5 py-2 btn-info' 
+      onClick={()=>navigate("/categories", {state:category})}>
+         explore more  ></button>
+      </div>
     </>
   )
 }

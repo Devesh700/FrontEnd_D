@@ -1,0 +1,10 @@
+.scheduled .nav-link{
+    background-color: white !important;
+}
+.scheduled .nav-link.active{
+    border: none !important;
+    border-bottom: 4px solid rgb(7, 90, 223) !important;
+}
+.scheduled .nav-tabs{
+    background-color: white;
+}
