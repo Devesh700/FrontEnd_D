@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Home.css";
-import Contact from '../../Contact';
+// import Contact from '../../Contact';
 import Blog from './Blog';
 import CourseData from '../Courses/CourseData';
 import Hero from './Hero';
@@ -27,7 +27,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Contact/>
+      {/* <Contact/> */}
       <Blog/>
       <div className='py-3'>
         <Categories category={category.slice(0,4)}/>
