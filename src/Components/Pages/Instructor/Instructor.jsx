@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-const instructorsData = [
-  {
-    id: 1,
-    name: 'John Doe',
-    classification: 'Senior Instructor',
-    classes: ['Class 6', 'Class 8'],
-    subjects: ['Mathematics', 'Physics'],
-    description: 'Experienced educator with a focus on STEM subjects.',
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    classification: 'Junior Instructor',
-    classes: ['Class 7', 'Class 8'],
-    subjects: ['English', 'History'],
-    description: 'Passionate about literature and history education.',
-  },
-  // Add more instructors as needed
-];
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const InstructorList = () => {
-  const [filterClass, setFilterClass] = useState('');
+    const [instructorsData,setinstructors]=useState([])
+  const data=useLocation().state;
+  const navigate=useNavigate();
+  const [filterClass, setFilterClass] = useState(data.class===undefined?'':data.class);
   const [filterSubject, setFilterSubject] = useState('');
+  useEffect(()=>{
+    fetchall();
+  },[])
+  const fetchall=async()=>{
+    const res=await fetch("http://localhost:4000/teachers",{
+      method:"GET"
+    })
+    let result=await res.json();
+    console.log(result)
+    result=result.filter(user=>user.modes.includes(data.mode));
+    setinstructors(result);
+    console.log(result);
+
+  }
 
   const handleClassFilterChange = (e) => {
     setFilterClass(e.target.value);
@@ -44,6 +41,9 @@ const InstructorList = () => {
   });
 
   return (
+
+    // FILTERS
+
     <div className="container mt-4">
       <h2 className="mb-4">Instructors</h2>
       <div className="mb-3">
@@ -57,9 +57,13 @@ const InstructorList = () => {
           onChange={handleClassFilterChange}
         >
           <option value="">All</option>
-          <option value="Class 6">Class 6</option>
-          <option value="Class 7">Class 7</option>
-          <option value="Class 8">Class 8</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
         </select>
       </div>
       <div className="mb-3">
@@ -73,27 +77,34 @@ const InstructorList = () => {
           onChange={handleSubjectFilterChange}
         >
           <option value="">All</option>
-          <option value="Mathematics">Mathematics</option>
+          <option value="Math">Mathematics</option>
           <option value="Physics">Physics</option>
           <option value="English">English</option>
           <option value="History">History</option>
         </select>
       </div>
+
+      {/* INSTRUCTOR CARDS */}
+
       <div className="row">
-        {filteredInstructors.map((instructor) => (
-          <div key={instructor.id} className="col-md-4 mb-4">
-            <div className="card">
-                <img className='card-img-top rounded-circle' src='https://tse2.mm.bing.net/th?id=OIP.xzCeheJTN-rREhIpcqKE6QHaIJ&pid=Api&P=0&h=180' height="200px"/>
+
+        {filteredInstructors.map((instructor) => {
+          console.log(instructor);
+          return (
+          
+          <div key={instructor.id} className="col-md-4 mb-4" onClick={()=>navigate("detail",{state:instructor})}>
+            <div className="card card-scroll h-400 overflow-y-scroll">
+                <img className='mx-auto rounded-circle' src={instructor.profile} height="200px" width={"200px"}/>
               <div className="card-body">
-                <h5 className="card-title">{instructor.name}</h5>
+                <h5 className="card-title">{instructor.fullname}</h5>
                 <p className="card-text">
                   <strong>Classification:</strong> {instructor.classification}
                 </p>
                 <p className="card-text">
-                  <strong>Classes:</strong> {instructor.classes.join(', ')}
+                  <strong>Classes:</strong> {instructor.classes.join(',')}
                 </p>
                 <p className="card-text">
-                  <strong>Subjects:</strong> {instructor.subjects.join(', ')}
+                  <strong>Subjects:</strong> {instructor.subjects.join(',')}
                 </p>
                 <p className="card-text">
                   <strong>Description:</strong> {instructor.description}
@@ -101,7 +112,8 @@ const InstructorList = () => {
               </div>
             </div>
           </div>
-        ))}
+        
+        )})}
       </div>
     </div>
   );

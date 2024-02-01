@@ -4,7 +4,7 @@ import Contact from '../../Contact';
 import Blog from './Blog';
 import CourseData from '../Courses/CourseData';
 import Hero from './Hero';
-import Categories from './Categories';
+import Categories from './HomeCategory';
 import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const navigate=useNavigate();
@@ -34,7 +34,7 @@ const Home = () => {
       <button 
       className='btn btn-community d-grid mx-auto px-5 py-2 btn-info' 
       onClick={()=>navigate("/categories", {state:category})}>
-         explore more  ></button>
+         explore more  {'>'}</button>
       </div>
     </>
   )

@@ -13,15 +13,19 @@ const CourseList = () => {
   const handleSearchvalue=(e)=>{
     setsearchValue(e.target.value,()=>handleSearch());
   }
-  const handleSearch=(e)=>{
+  const handleSearch=(e)=>{try{
       let val=new RegExp(`\\b${searchValue}`, 'i')
       let data=CourseData.filter((elem,index)=>{
         return val.test(elem.category);
       })
-      setfilteredData(()=>data);
-      console.log(val);
-      console.log(CourseData);
+       setfilteredData(data, () => {
+    console.log(val);
+    console.log(CourseData);
+  });
   }
+  catch(err){
+    alert("error ")
+  }}
   const naviagte=useNavigate();
   return (
     <>

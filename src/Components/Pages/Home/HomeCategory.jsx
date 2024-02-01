@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 const Categories = (props) => {
       const category =(props.category);
   return (

@@ -1,0 +1,32 @@
+#br-bl{
+    border-right: 5px solid blue;
+}
+.nav-tabs-custom{
+    text-transform: capitalize;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    padding: 1rem 1rem;
+    display: grid;
+    border-bottom: 0.1px solid lightgray;
+}
+.w-md-45{
+    width: 45% !important;
+}
+@media screen and (max-width:768px) {
+    .w-md-45{
+        width: 100%  !important;
+    }
+}
+.edit-img{
+    position: absolute;
+    top: 125px;
+    right: 40%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid;
+    overflow: hidden;
+    background-color: white;
+    z-index: 9;
+}
